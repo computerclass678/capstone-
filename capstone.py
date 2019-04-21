@@ -15,7 +15,15 @@ class Concept():
         self.explanation = explanation
         self.example = example
 
-concept_1 = Concept("def1", "exp1", "exa1")
+concept_1 = Concept("""
+A market structure with one firm producing a unique product, 
+determine the product price with high barriers to enter 
+and exit the market. 
+
+Natural Monopoly: 
+An industry makes the price cheaper and produces efficiently 
+by having a monopoly than several smaller competing firms. 
+""", "exp1", "exa1")
 concept_2 = Concept("def2", "exp2", "exa2")
 concept_3 = Concept("def3", "exp3", "exa3")
 concepts = [concept_1, concept_2, concept_3]
@@ -25,6 +33,7 @@ def delete_one():
     print(explanation)
 
 def show_concept_one():
+    change_graph("monopoly_profit.gif")
     lb_explanation.delete(0, "end")
     for concept in concepts:
         print("Definition: {}".format(concept.definition))
@@ -34,7 +43,6 @@ def show_concept_one():
 
 
 def show_concept_two():
-    change_graph("monopoly_profit.gif")
     lb_explanation.delete(0, "end")
     for concept in concepts:
         print("Definition: {}".format(concept.definition))
@@ -72,7 +80,7 @@ def exit():
 
 def change_graph(image):
     photo = tkinter.PhotoImage(file = image )
-    lb_graph.configure(image=photo)
+    lb_graph.configure(image = photo)
     lb_graph.image = photo
 
 # def dates():
