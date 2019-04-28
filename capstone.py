@@ -19,32 +19,6 @@ concept_1 = Concept("Monopoly: a market structure with one firm producing a uniq
 concept_2 = Concept("def2", "exp2", "exa2")
 concepts = [concept_1, concept_2]
 
-def set_delete_definition(event = None):
-    print("DEFINITION SET")
-    global to_delete
-    to_delete = "definition"
-    lbl_definition.configure(fg="red")
-
-def set_delete_example(event = None):
-    print("EXAMPLE SET")
-    global to_delete
-    to_delete = "example"
-    
-def set_delete_explanation(event = None):
-    print("EXPLANATION SET")
-    global to_delete
-    to_delete = "explanation"
-
-def delete_one():
-    print("DELETE ONE")
-    global to_delete
-    print(to_delete)
-    if to_delete == "definition":
-        lbl_definition["text"] = ""
-    elif to_delete == "explanation":
-        lbl_explanation["text"] = ""
-    elif to_delete == "example":
-        lbl_example["text"] = ""
 
 def show_concept_one():
     change_graph("monopoly.gif")
@@ -59,6 +33,7 @@ def show_concept_one():
 
 
 def show_concept_two():
+    change_graph("game.gif")
     for concept in concepts:
         definition = "{}".format(concept.definition)
         explanation = "{}".format(concept.explanation)
@@ -66,6 +41,40 @@ def show_concept_two():
     lbl_definition["text"] = concept_2.definition
     lbl_explanation["text"] = concept_2.explanation
     lbl_example["text"] = concept_2.example
+
+
+def set_delete_definition(event = None):
+    print("DEFINITION SET")
+    global to_delete
+    if to_delete == "definition":
+        lbl_definition.configure(fg = "red")
+    else: 
+
+
+def set_delete_example(event = None):
+    print("EXAMPLE SET")
+    global to_delete
+    to_delete = "example"
+    lbl_example.configure(fg = "red")
+
+def set_delete_explanation(event = None):
+    print("EXPLANATION SET")
+    global to_delete
+    to_delete = "explanation"
+    lbl_explanation.configure(fg = "red")
+
+
+def delete_one():
+    print("DELETE ONE")
+    global to_delete
+    print(to_delete)
+    if to_delete == "definition":
+        lbl_definition["text"] = ""
+    elif to_delete == "explanation":
+        lbl_explanation["text"] = ""
+    elif to_delete == "example":
+        lbl_example["text"] = ""
+
 
 def load_file():
     data = pickle.load(open("Capstone.dat", "rb"))
@@ -78,7 +87,7 @@ def save_file():
     data = text_input.get(1.0, "end")
     pickle.dump(data, open("Capstone.dat", "wb"))
     print("Saved Data: {}".format(data))
-    
+
 
 
 def exit():
@@ -92,16 +101,11 @@ def change_graph(image):
     lb_graph.configure(image = photo)
     lb_graph.image = photo
 
-# def dates():
-#     dt  = datetime.datetime
-#     now = dt.now()
-#     dt(year=2019,month=05,day=17) - dt(year=now.year, month=now.month, day=now.day, minute=now.minute))
-#     
 
 lbl_button = tkinter.Label(root, text = "Button", bg = "White")
 lbl_button.grid(row = 0, column = 0)
 
-btn_concept_1 = tkinter.Button(root, text = "Foreign Exchange Market", fg = "black", width = 20, height = 3, command = show_concept_one) 
+btn_concept_1 = tkinter.Button(root, text = "MOnopoly", fg = "black", width = 20, height = 3, command = show_concept_one) 
 btn_concept_1.grid(row = 1, column = 0)
 
 btn_concept_2 = tkinter.Button(root, text = "Game Theory", fg = "black", width = 16, height = 3, command = show_concept_two) 
